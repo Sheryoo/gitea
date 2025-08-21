@@ -22,7 +22,7 @@ services:
       # - GITEA__database__NAME=gitea
       # - GITEA__database__USER=gitea
       # - GITEA__database__PASSWD=gitea
-    restart: always
+    restart: unless-stopped
     networks:
       - gitea
     volumes:
@@ -38,7 +38,7 @@ services:
   db:
     image: postgres:14-alpine
     container_name: gitea-db-postgres
-    restart: always
+    restart: unless-stopped
     environment:
       - POSTGRES_USER=gitea
       - POSTGRES_PASSWORD=gitea
@@ -52,7 +52,7 @@ services:
     ## if you want to use the mysql image, you can uncomment the following code and comment the postgres code above
   # db:
   #   image: mysql:8.0
-  #   restart: always
+  #   restart: unless-stopped
   #   environment:
   #     - MYSQL_ROOT_PASSWORD=gitea
   #     - MYSQL_DATABASE=gitea
